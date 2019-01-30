@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>NinetyNineCats</title>
+    <%= csrf_meta_tags %>
+
+    <%= stylesheet_link_tag    'application', media: 'all' %>
+    <%= javascript_include_tag 'application' %>
+  </head>
+
+  <body>
+      <h1>Get Your Cats Now!</h1>
+      <% if logged_in? %>
+      <h2>hello, <%=current_user.username %></h2>
+      <form action="<% session_url %>" method="post">
+        <input type= "hidden" name="_method" value="post" >
+        <input type= "submit" value="GTFO">
+        
+      </form>
+      <% else %>
+  
+      <% end%>  
+      <%= yield %>
+    <%= yield %>
+  </body>
+</html>
