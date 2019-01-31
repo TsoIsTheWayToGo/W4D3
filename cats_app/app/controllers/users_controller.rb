@@ -5,8 +5,8 @@ class UsersController < ApplicationController
   end
 
   def create
-    @user = User.find_by_credentials(params[:user][:username],params[:user][:password])
-    if @user
+    @user = User.new(user_params)
+    if @user.save
       login!(@user)
       redirect_to user_url(@user)
     else
@@ -15,5 +15,11 @@ class UsersController < ApplicationController
     end
   end
 
+  def show
 
+  end
+private
+def user_params
+  params.require(:user).permit(:username, :password)
+end
 end

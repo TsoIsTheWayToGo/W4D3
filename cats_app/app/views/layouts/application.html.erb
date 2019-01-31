@@ -9,18 +9,33 @@
   </head>
 
   <body>
-      <h1>Get Your Cats Now!</h1>
+      <h1>Get Your Cats Now</h1>
       <% if logged_in? %>
+
       <h2>hello, <%=current_user.username %></h2>
-      <form action="<% session_url %>" method="post">
-        <input type= "hidden" name="_method" value="post" >
+
+      <form action="<%= session_url %>" method="post">
+        <input type= "hidden" name="_method" value="delete" >
         <input type= "submit" value="GTFO">
-        
       </form>
+        
       <% else %>
-      <a href=""></a>      
-      <% end%>  
-      <%= yield %>
+
+      <a href="<%= new_user_url %>">Sign Up</a>      
+      <a href="<%= new_session_url %>">Sign In</a>
+      
+
+      <% end %>  
+
+      <% if flash[:errors] %>
+        <% flash[:errors].each do |error| %>
+        <%= error %>
+        <% end %>
+      <% end %>
+        
+     
+   
+      
     <%= yield %>
   </body>
 </html>

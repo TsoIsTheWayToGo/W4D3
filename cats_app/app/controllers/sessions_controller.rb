@@ -10,14 +10,15 @@ class SessionsController < ApplicationController
     if user
       login!(user)
       redirect_to user_url(user)
-
+      
     else
-      flash.now[:errors]= user.errors.full_messages
+      flash.now[:errors]= ["Incorrect username or password"]
+      # debugger
       render :new
     end
   end
 
-  def destory
+  def destroy
     logout!
     redirect_to new_session_url
   end
